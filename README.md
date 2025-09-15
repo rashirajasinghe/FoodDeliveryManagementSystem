@@ -156,7 +156,7 @@ frontend/
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd ChatApp
+cd FoodDelivayAndManagemntSystem
 ```
 
 2. **Backend Setup**
