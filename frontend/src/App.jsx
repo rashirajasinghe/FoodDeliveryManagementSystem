@@ -3,8 +3,6 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { FoodDeliveryProvider } from './contexts/FoodDeliveryContext';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import TaskManager from './pages/TaskManager';
 import HomePage from './pages/HomePage';
 import RestaurantPage from './pages/RestaurantPage';
 import RestaurantDashboard from './pages/RestaurantDashboard';
@@ -12,7 +10,6 @@ import OrdersPage from './pages/OrdersPage';
 import DriverDashboard from './pages/DriverDashboard';
 import AnalyticsDashboard from './pages/AnalyticsDashboard';
 import ChatBot from './components/ChatBot';
-import Layout from './components/Layout';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -89,27 +86,6 @@ function App() {
                 }
               />
               
-              {/* Task Management Routes */}
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Layout>
-                      <Dashboard />
-                    </Layout>
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/tasks"
-                element={
-                  <ProtectedRoute>
-                    <Layout>
-                      <TaskManager />
-                    </Layout>
-                  </ProtectedRoute>
-                }
-              />
             </Routes>
           </div>
         </Router>

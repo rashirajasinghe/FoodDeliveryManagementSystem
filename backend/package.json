@@ -1,7 +1,7 @@
 {
-  "name": "task-management-backend",
+  "name": "food-delivery-backend",
   "version": "1.0.0",
-  "description": "Backend for Task Management System",
+  "description": "Backend for Food Delivery Management System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["task-management", "express", "mongodb", "oauth"],
-  "author": "Your Name",
+  "keywords": ["food-delivery", "express", "mongodb", "oauth", "restaurant-management"],
+  "author": "Rashi Rajasinghe",
   "license": "MIT"
 }

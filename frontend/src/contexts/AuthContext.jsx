@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -16,43 +15,60 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    checkAuthStatus();
+    // Check for existing session
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+    setLoading(false);
   }, []);
 
-  const checkAuthStatus = async () => {
+  const login = async (email, password) => {
     try {
-      const response = await axios.get('/api/auth/me', {
-        withCredentials: true
-      });
-      setUser(response.data);
+      // Mock login - replace with actual API call
+      const mockUser = {
+        id: '1',
+        email,
+        name: email.split('@')[0],
+        role: 'customer'
+      };
+      
+      setUser(mockUser);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      return { success: true };
     } catch (error) {
-      setUser(null);
-    } finally {
-      setLoading(false);
+      return { success: false, error: error.message };
     }
   };
 
-  const login = () => {
-    window.location.href = '/api/auth/google';
+  const register = async (userData) => {
+    try {
+      // Mock registration - replace with actual API call
+      const mockUser = {
+        id: '1',
+        ...userData,
+        role: 'customer'
+      };
+      
+      setUser(mockUser);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   };
 
-  const logout = async () => {
-    try {
-      await axios.post('/api/auth/logout', {}, {
-        withCredentials: true
-      });
-      setUser(null);
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
   };
 
   const value = {
     user,
     loading,
     login,
-    logout,
-    checkAuthStatus
+    register,
+    logout
   };
 
   return (
